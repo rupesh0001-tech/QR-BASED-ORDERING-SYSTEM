@@ -48,4 +48,4 @@ const menuItemSchema = new mongoose.Schema<MenuItemI>({
     timestamps : true
 })
 
-export default mongoose.model<MenuItemI>("MenuItem", menuItemSchema); 
+export default mongoose.model<MenuItemI>("MenuItem", menuItemSchema);    
