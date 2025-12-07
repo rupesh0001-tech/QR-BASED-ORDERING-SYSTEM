@@ -14,9 +14,6 @@ interface OrderI extends mongoose.Document {
   total_price: number;
   payment_method: string;
   payment_status: string;
-  razorpayOrderId: string;
-  razorpayPaymentId: string;
-  razorpaySignature: string;
 }
 
 const orderSchema = new mongoose.Schema<OrderI>(
@@ -67,20 +64,9 @@ const orderSchema = new mongoose.Schema<OrderI>(
       type: String,
       required: true,
       enum: ["pending", "paid", "failed", "cancelled"],
+      default : 'pending',
     },
-    razorpayOrderId: {
-      type: String,
-      default: null,
-    },
-    razorpayPaymentId: {
-      type: String,
-      default: null,
-    },
-
-    razorpaySignature: {
-      type: String,
-      default: null,
-    },
+    
   },
   {
     timestamps: true,
