@@ -4,6 +4,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+
+// -------------------- import folders --------------------
+import connectDB from "./db/db";
+
+
+// -------------------- import functions and vars  --------------------
+connectDB();
+
 const app = express();
 
 // -------------------- Middlewares --------------------
