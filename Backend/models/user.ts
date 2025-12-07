@@ -26,13 +26,14 @@ const userSchema  = new mongoose.Schema<UserI>({
         type : String,
         required : true,
         min : 6,
-        max : 1024
+        max : 1024,
+        select : false
     },
     role : {
         type : String,
         required : true,
         enum : ["admin", "chef"]
-        
+
     }
 }, {
     timestamps : true    
