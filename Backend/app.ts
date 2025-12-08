@@ -1,6 +1,9 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser = require("cookie-parser");
+
+
 
 dotenv.config();
 
@@ -14,6 +17,7 @@ import adminRoutes from './routes/admin.routes'
 connectDB();
 
 const app = express();
+app.use(cookieParser())
 
 // -------------------- Middlewares --------------------
 app.use(express.json());
