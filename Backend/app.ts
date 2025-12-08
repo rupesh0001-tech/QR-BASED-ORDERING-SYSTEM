@@ -7,6 +7,7 @@ dotenv.config();
 
 // -------------------- import folders --------------------
 import connectDB from "./db/db";
+import adminRoutes from './routes/admin.routes'
 
 
 // -------------------- import functions and vars  --------------------
@@ -22,6 +23,11 @@ app.use(cors());
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "API is running..." });
 });
+
+
+// --------------------  Routes --------------------
+app.use('/api/admin', adminRoutes );
+
 
 // -------------------- 404 Handler --------------------
 app.use((req: Request, res: Response) => {
