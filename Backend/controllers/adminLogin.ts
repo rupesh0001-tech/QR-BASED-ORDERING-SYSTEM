@@ -14,12 +14,14 @@ export const adminLogin = async (req: Request, res: Response) => {
         }
 
         // find admin
-        const admin = await User.findOne({ email, role: "admin" });
+        const admin = await User.findOne({ email, role: "admin" }).select("+password");
         if (!admin) {
             return res.status(404).json({
                 message: "Admin not found",
             });
         }
+
+        console.log(admin.password);
 
         // compare password
         const isMatch = await bcrypt.compare(password, admin.password);
