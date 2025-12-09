@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 
 
 const AdminLoginBox = () => {
@@ -24,7 +25,8 @@ interface IformDataState{
 
     const handleSubmit = (e : any  ) : void  => {
       e.preventDefault();
-      console.log(Data); 
+      
+
     }
 
 
