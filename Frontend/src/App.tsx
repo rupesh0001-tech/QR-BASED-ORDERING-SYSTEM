@@ -1,7 +1,13 @@
+import { Route, Routes } from "react-router-dom"
+import AdminLogin from "./pages/AdminLogin"
+
+
 
 const App = () => {
   return (
-    <div>App</div>
+    <Routes>
+      <Route path="/" element={<AdminLogin />} />
+    </Routes>
   )
 }
 
