@@ -1,9 +1,36 @@
-import React from "react";
+import { useState } from "react";
+
 
 const AdminLoginBox = () => {
+
+interface IformDataState{
+    email : string, 
+    password : string 
+  }
+
+  let [Data, setData ] = useState<IformDataState>({
+    email : '', 
+    password  : ''
+    });
+
+
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement> ) => {
+      setData({
+        ...Data,
+        [e.target.name] : e.target.value
+        
+      })
+    }
+
+    const handleSubmit = (e : any  ) : void  => {
+      e.preventDefault();
+      console.log(Data); 
+    }
+
+
   return (
-    <main className="flex items-center justify-center w-auto px-10 border border-gray-500 py-10 rounded-2xl   ">
-      <form className="flex w-auto flex-col max-w-96">
+    <main className="flex items-center justify-center w-auto px-10 py-10 border border-gray-300 5rounded-2xl rounded-2xl   ">
+      <form onSubmit={handleSubmit} className="flex w-auto flex-col max-w-96">
         
 
         <h2 className="text-4xl font-medium text-gray-900">Admin Login </h2>
@@ -21,6 +48,7 @@ const AdminLoginBox = () => {
             required
             type="email"
             name="email"
+            onChange={handleChange}
           />
         </div>
 
@@ -32,6 +60,7 @@ const AdminLoginBox = () => {
             required
             type="password"
             name="password"
+            onChange={handleChange}
           />
         </div>
 

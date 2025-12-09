@@ -6,7 +6,7 @@ import AdminLogin from "./pages/AdminLogin"
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<AdminLogin />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
     </Routes>
   )
 }
