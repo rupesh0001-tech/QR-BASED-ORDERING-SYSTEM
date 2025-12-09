@@ -1,8 +1,13 @@
 import { useState } from "react";
-import axios from 'axios';
+
+import api from "../api/api";
+
+
 
 
 const AdminLoginBox = () => {
+
+const Navigate = useNavigate();
 
 interface IformDataState{
     email : string, 
@@ -25,7 +30,11 @@ interface IformDataState{
 
     const handleSubmit = (e : any  ) : void  => {
       e.preventDefault();
-      
+      api.post('/api/admin/login', Data).then(() => {
+          Navigate('/admin/dashboard');
+      }).catch((err) => {
+        console.log(err)
+      });
 
     }
 
