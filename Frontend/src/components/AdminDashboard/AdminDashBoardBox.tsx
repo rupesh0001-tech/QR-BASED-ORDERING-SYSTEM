@@ -2,6 +2,7 @@ import AdminDashBoardBox2 from "./AdminDashBoardBox2";
 import AdminDashBoardSmallBox from "./AdminDashBoardSmallBox";
 import GraphForSales from "./GraphForSales";
 import GraphforItemSale from "./GraphforItemSale";
+import UserActivity from "./UserActivity";
 
 const AdminDashBoardBox = () => {
   return (
@@ -17,9 +18,13 @@ const AdminDashBoardBox = () => {
             TitleActionMessage="See All Reviews "
           />
         </div>
-        <div className=" flex justify-between ">
+        <div className=" flex justify-around  mt-4">
           <GraphForSales />
           <GraphforItemSale />
+        </div>
+        <div>
+          <h1> See all User Activity </h1>
+          <UserActivity />
         </div>
       </div>
     </>
