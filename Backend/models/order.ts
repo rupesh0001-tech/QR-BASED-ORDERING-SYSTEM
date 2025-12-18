@@ -1,3 +1,4 @@
+import { createRoot } from 'react-dom/client';
 import mongoose from "mongoose";
 import MenuItem from "./menuItem";
 import Table from "./table";
@@ -72,5 +73,7 @@ const orderSchema = new mongoose.Schema<OrderI>(
     timestamps: true,
   }
 );
+
+orderSchema.index({order_status: 1,  createdAt: 1});
 
 export default mongoose.model<OrderI>("Order", orderSchema);
