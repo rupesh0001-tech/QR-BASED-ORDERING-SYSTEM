@@ -4,8 +4,8 @@ import MenuItem from "./menuItem";
 import Table from "./table";
 
 interface OrderI extends mongoose.Document {
-  order_id: string;
-  table_number: mongoose.Schema.Types.ObjectId;
+  order_id: number;
+  table: mongoose.Schema.Types.ObjectId;
   items: {
     id: mongoose.Schema.Types.ObjectId;
     name: string;
@@ -20,18 +20,17 @@ interface OrderI extends mongoose.Document {
 const orderSchema = new mongoose.Schema<OrderI>(
   {
     order_id: {
-      type: String,
+      type: Number,
       required: true,
-      unique: true,
     },
-    table_number: {
+    table: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Table",
     },
     items: [
       {
-        id: {
+        _id: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "MenuItem",

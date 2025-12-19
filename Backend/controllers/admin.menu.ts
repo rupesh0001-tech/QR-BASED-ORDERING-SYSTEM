@@ -1,5 +1,4 @@
 import MenuItem from "../models/menuItem";
-import MenuItem from "../models/menuItem";
 import { Request, Response } from "express";
 
 export const createItem = async (req: Request, res: Response) => {
