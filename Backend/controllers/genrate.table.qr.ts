@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { v4 as uuidv4 } from 'uuid';
 import { genrateUrl } from "../helper/genrateUrl";
 
-const createTable = async (req: Request, res: Response) => {
+export const createTable = async (req: Request, res: Response) => {
     try {
         const { table_number }  = req.body;
         if(!table_number){
@@ -29,7 +29,7 @@ const createTable = async (req: Request, res: Response) => {
             status : "empty",
             tableId
         });
-        
+
         res.status(200).json({
             message: "Table created successfully",
             table,
@@ -42,3 +42,24 @@ const createTable = async (req: Request, res: Response) => {
         })
     }
 };
+
+export const deleteTable = async (req : Request, res : Response) => {
+    try{
+        const { tableId } = req.params;
+        const table = await Table.findByIdAndDelete(tableId);
+        if(!table){
+            return res.status(404).json({
+                message : ' table not found '
+            })
+        }
+        res.status(200).json({
+            message : ' table deleted successfully '
+        })
+    }catch(error){
+        res.status(400).json({
+            message : ' error while deleting the table ',
+            error : error
+        })
+    }
+};
+
