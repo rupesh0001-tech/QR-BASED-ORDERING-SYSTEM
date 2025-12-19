@@ -9,14 +9,18 @@ const tableSchema = new mongoose.Schema({
     },
     table_qr : {
         type : String,
-        required : true,
         unique : true
     },
     status : {
         type : String,
         required : true,
-        enum : ["available", "unavailable"]
+        enum : ["full", "empty"]
     },
+    tableId : {
+        type : String,
+        required : true,
+        unique : true
+    }
 }, 
 
 {
