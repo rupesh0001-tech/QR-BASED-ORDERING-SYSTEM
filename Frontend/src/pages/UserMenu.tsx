@@ -1,6 +1,7 @@
 import {  SlidersHorizontal } from "lucide-react";
 import SearchBarMenu from "../components/User Menu/SearchBarMenu";
 import CategoryMenu from "../components/User Menu/CategoryMenu";
+import MainMenu from "../components/User Menu/MainMenu";
 
 
 const UserMenu = () => {
@@ -18,6 +19,7 @@ const UserMenu = () => {
       </div>
 
       <CategoryMenu />
+      <MainMenu />
     </div>
   );
 };
