@@ -2,5 +2,5 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export function genrateUrl(id : string){
-    return `${process.env.CLIENT_URL}/order/${id}`
+    return `${process.env.FRONTEND_URL}/order/${id}`
 }

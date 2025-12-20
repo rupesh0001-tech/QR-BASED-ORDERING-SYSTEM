@@ -1,5 +1,5 @@
 import QRCode from 'qrcode';
 
-export function genrateqrcode(url : string){
-    return QRCode.toDataURL(url);
+export async function genrateqrcode(url : string){
+    return await QRCode.toDataURL(url);
 }
