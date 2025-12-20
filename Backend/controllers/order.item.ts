@@ -17,9 +17,6 @@ interface reqBodyI {
     cartPrice : number
 }
 
-
-
-
 export const createOrder = async (req: Request, res: Response) => {
     try {
         const {tableId} = req.params;
@@ -80,3 +77,5 @@ export const createOrder = async (req: Request, res: Response) => {
         })
     }
 }
+
+
