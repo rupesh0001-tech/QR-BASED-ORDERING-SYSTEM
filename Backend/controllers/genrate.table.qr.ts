@@ -2,6 +2,7 @@ import Table from "../models/table";
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from 'uuid';
 import { genrateUrl } from "../helper/genrateUrl";
+import { genrateqrcode } from "../helper/genrateqrcode";
 
 export const createTable = async (req: Request, res: Response) => {
     try {
@@ -21,14 +22,15 @@ export const createTable = async (req: Request, res: Response) => {
         }
          const tableId = uuidv4();
         const OrderUrlforTable = genrateUrl(tableId);
-        const QRcodeUrl = genrateUrl(OrderUrlforTable);
+        const QRcodeUrl = await genrateqrcode(OrderUrlforTable);
+        console.log(QRcodeUrl)
 
         const table = await Table.create({
             Table_number : table_number,
             table_qr : QRcodeUrl,
             status : "empty",
             tableId
-        });
+        } as any );
 
         res.status(200).json({
             message: "Table created successfully",

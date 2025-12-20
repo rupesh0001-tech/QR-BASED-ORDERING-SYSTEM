@@ -11,6 +11,7 @@ dotenv.config();
 // -------------------- import folders --------------------
 import connectDB from "./db/db";
 import adminRoutes from './routes/admin.routes'
+import userMenuRoutes from './routes/user.menu.routes'
 
 
 // -------------------- import functions and vars  --------------------
@@ -34,6 +35,7 @@ app.get("/", (req: Request, res: Response) => {
 
 // --------------------  Routes --------------------
 app.use('/api/admin', adminRoutes );
+app.use('/api', userMenuRoutes );
 
 
 // -------------------- 404 Handler --------------------
