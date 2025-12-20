@@ -4,10 +4,10 @@ import MenuItem from "./menuItem";
 import Table from "./table";
 
 interface OrderI extends mongoose.Document {
-  order_id: number;
+  order_id: string;
   table: mongoose.Schema.Types.ObjectId;
   items: {
-    id: mongoose.Schema.Types.ObjectId;
+    _id: mongoose.Schema.Types.ObjectId;
     name: string;
     quantity: number;
   }[];
@@ -20,7 +20,7 @@ interface OrderI extends mongoose.Document {
 const orderSchema = new mongoose.Schema<OrderI>(
   {
     order_id: {
-      type: Number,
+      type: String,
       required: true,
     },
     table: {

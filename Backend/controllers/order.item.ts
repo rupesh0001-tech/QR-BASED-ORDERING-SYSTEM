@@ -3,7 +3,21 @@ import Table from "../models/table";
 import Order from "../models/order";
 import MenuItem from "../models/menuItem";
 import { Request, Response } from "express";
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
+
+interface cartI {
+    _id : string,
+    name : string,
+    quantity : number
+}
+
+
+interface reqBodyI {
+    cart : cartI[],
+    cartPrice : number
+}
+
+
 
 
 export const createOrder = async (req: Request, res: Response) => {
@@ -11,7 +25,7 @@ export const createOrder = async (req: Request, res: Response) => {
         const {tableId} = req.params;
 
         // a cart should contain here  [{ name id quatity }] 
-        const {cart, cartPrice} = req.body;
+        const {cart, cartPrice} = req.body as reqBodyI;
         const table = await Table.findById(tableId);
         
         if(!table){
@@ -46,14 +60,14 @@ export const createOrder = async (req: Request, res: Response) => {
         }
 
         const order = await Order.create({
-            order_id : table.Table_number, 
+            order_id : uuidv4(),
             table : table._id,
             items : cart,
             order_status: 'pending',
             total_price : cartPrice,
             payment_method : 'cash',
             payment_status : 'pending'
-        });
+        } as any);
 
         res.status(200).json({
             message : ' order created successfully ',
