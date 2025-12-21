@@ -6,7 +6,7 @@ import MainMenu from "../components/User Menu/MainMenu";
 
 const UserMenu = () => {
   return (
-    <div className=" h-screen px-4 flex flex-col  gap-4 py-1 bg-[#f4f4f6]">
+    <div className=" min-h-screen px-4 flex flex-col  gap-4 py-1 bg-[#f4f4f6]">
       <div className="flex flex-col gap-4 items-center bg-white px-4 py-4 rounded-2xl">
         <SearchBarMenu />
         <div className="flex items-center justify-between w-full">
@@ -20,6 +20,7 @@ const UserMenu = () => {
 
       <CategoryMenu />
       <MainMenu />
+
     </div>
   );
 };
