@@ -29,26 +29,27 @@ const MainMenu = () => {
     getMenu();
   }, []);
   return (
-    <div className="flex flex-col gap-1 items-center bg-white px-4 py-4 rounded-2xl">
-      <div>
+    <div className="flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl">
+      <div className="flex flex-col gap-4 w-full ">
         <h1 className=" text-md font-bold ">Main Menu</h1>
         <hr />
-        <div className=" flex flex-col w-full gap-4">
-            {menu.map((item, index) => {
-          return (
-            <div  key={index}>
-              <MainCards name={item.name} description={item.description} price={item.price} category={item.category} image={item.image} status={item.status} />
-              {/* <div>{item.name}</div>
-              <div>{item.description}</div>
-              <div>{item.price}</div>
-              <div>{item.category}</div>
-              <div>
-                <img src={item.image} alt="" />
+        <div className=" flex w-full px flex-col items-start justify-start gap-4">
+          {menu.map((item, index) => {
+            return (
+              <div className=" " key={index}>
+                <MainCards
+                  name={item.name}
+                  description={item.description}
+                  price={item.price}
+                  category={item.category}
+                  image={item.image}
+                  status={item.status}
+                />
               </div>
-              <div>{item.status}</div> */}
-            </div>
-          );
-        })}
+            );
+          })}
+          
+          
         </div>
       </div>
     </div>
