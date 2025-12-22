@@ -2,6 +2,8 @@ import MainCards from "./MainCards";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../api/api";
+import { useDispatch, useSelector } from "react-redux";
+import { AddMenu } from "../../store/slices/menuSlices";
 
 const MainMenu = () => {
   interface MenuItemI {
@@ -14,6 +16,11 @@ const MainMenu = () => {
   }
 
   let [menu, setMenu] = useState<MenuItemI[]>([]);
+  const dispatch = useDispatch();
+  
+
+
+
   const params = useParams();
 
   const getMenu = async () => {
@@ -21,10 +28,13 @@ const MainMenu = () => {
       .get(`/api/${params.tableId}/menu`)
       .then((res) => {
         setMenu(res.data.Menu);
+        dispatch(AddMenu(menu))
       })
       .catch((err) => console.log(err));
   };
 
+
+  const Menu = useSelector((state : any) => { return state.menuReducers.Menu})
   useEffect(() => {
     getMenu();
   }, []);
@@ -34,7 +44,7 @@ const MainMenu = () => {
         <h1 className=" text-md font-bold ">Main Menu</h1>
         <hr />
         <div className=" flex w-full px flex-col items-start justify-start gap-4">
-          {menu.map((item, index) => {
+          {Menu.map((item : any, index : any) => {
             return (
               <div className=" " key={index}>
                 <MainCards
