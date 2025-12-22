@@ -29,9 +29,11 @@ const MainCards = ({
   return (
     <div className="flex px-3 gap-6 min-h-[125px] text-start items-center justify-between shadow-md rounded-2xl ">
       {/* Image */}
-      <div className="w-30 h-27 flex justify-center items-center bg-[#fefbe5] rounded-2xl">
-        <img src={image} alt={name} className="w-30 object-contain" />
+      <div className="w-30 h-27  flex justify-center items-center bg-[#fefbe5] rounded-2xl flex-col  ">
+        <img src={image} alt={name} className="w-30 object-contain  " />
+        {/* <p className=" p-1 px-2 bg-blue-900 text-white  text-center rounded-2xl text-xs">{category}</p> */}
       </div>
+      
 
       {/* Content */}
       <div className="py-2 px w-[70%] flex flex-col ">
