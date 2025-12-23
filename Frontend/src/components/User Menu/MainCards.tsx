@@ -1,13 +1,10 @@
-{
-  /* <div>{item.name}</div>
-              <div>{item.description}</div>
-              <div>{item.price}</div>
-              <div>{item.category}</div>
-              <div>
-                <img src={item.image} alt="" />
-              </div>
-              <div>{item.status}</div> */
-}
+import { useDispatch, useSelector } from "react-redux";
+import {
+  AddToCart,
+  DecreaseQty,
+  IncreateQty,
+} from "../../store/slices/menuSlices";
+import { Minus, Plus } from "lucide-react";
 
 interface MenuItemI {
   name: string;
@@ -16,6 +13,7 @@ interface MenuItemI {
   category: string;
   image: string;
   status: string;
+  _id: any;
 }
 
 const MainCards = ({
@@ -25,15 +23,33 @@ const MainCards = ({
   category,
   image,
   status,
+  _id,
 }: MenuItemI) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (_id: any, name: any, price: number) => {
+    dispatch(AddToCart({ _id, name, price }));
+  };
+
+  const cartItem = useSelector((state: any) =>
+    state.menuReducers.Cart.find((item: any) => item._id === _id)
+  );
+
+  const handleIncreaseQuantity = (_id: any) => {
+    dispatch(IncreateQty({_id}));
+  };
+
+  const handleDescreaseQuantity = (_id: any) => {
+    dispatch(DecreaseQty({_id}));
+  };
+
   return (
-    <div className="flex px-3 gap-6 min-h-[125px] text-start items-center justify-between shadow-md rounded-2xl ">
+    <div className="flex px-3 gap-6 min-w-full min-h-[125px] text-start items-center justify-between shadow-md rounded-2xl ">
       {/* Image */}
       <div className="w-30 h-27  flex justify-center items-center bg-[#fefbe5] rounded-2xl flex-col  ">
         <img src={image} alt={name} className="w-30 object-contain  " />
         {/* <p className=" p-1 px-2 bg-blue-900 text-white  text-center rounded-2xl text-xs">{category}</p> */}
       </div>
-      
 
       {/* Content */}
       <div className="py-2 px w-[70%] flex flex-col ">
@@ -46,14 +62,39 @@ const MainCards = ({
         </div>
 
         {/* Bottom row */}
-        <div className="flex w-full items-center  gap-4 mt-4 ">
+        <div className="flex w-full items-center gap-4 mt-4 ">
           <span className="bg-orange-300 px-3 py-2 rounded-xl text-sm font-semibold">
             ₹{price}
           </span>
 
-          <button className="bg-blue-950 text-white px-3.5 py-3 rounded-xl text-xs font-semibold">
-            Add
-          </button>
+          {cartItem? (
+            <>
+              <div className="flex bg-amber-100 p-2 rounded-4xl w-20 justify-around items-center ">
+                <button   onClick={() => handleDescreaseQuantity(cartItem._id)}>
+                  <h1 className=" bg-white p-1 rounded-2xl flex justify-center items-center ">
+                    {" "}
+                    <Minus size={12} strokeWidth={3} />{" "}
+                  </h1>
+                </button>
+
+                <h1 className=" font-semibold "> {cartItem.quantity}</h1>
+                <button onClick={() => handleIncreaseQuantity(cartItem._id)}>
+                  {" "}
+                  <h1 className=" bg-white p-1 rounded-2xl flex justify-center items-center   ">
+                    {" "}
+                    <Plus size={12} strokeWidth={3} />
+                  </h1>{" "}
+                </button>
+              </div>
+            </>
+          ) : (
+            <button
+              onClick={() => handleAddToCart(_id, name, price)}
+              className="bg-blue-950 text-white px-3.5 py-3 rounded-xl text-xs font-semibold"
+            >
+              Add
+            </button>
+          )}
         </div>
       </div>
     </div>
