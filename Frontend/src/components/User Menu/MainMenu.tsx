@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import api from "../../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { AddMenu } from "../../store/slices/menuSlices";
+import Cart from "./Cart";
 
 const MainMenu = () => {
   interface MenuItemI {
@@ -27,8 +28,9 @@ const MainMenu = () => {
     await api
       .get(`/api/${params.tableId}/menu`)
       .then((res) => {
+        console.log('hit')
         setMenu(res.data.Menu);
-        dispatch(AddMenu(menu))
+        dispatch(AddMenu(res.data.Menu))
       })
       .catch((err) => console.log(err));
   };
@@ -38,15 +40,16 @@ const MainMenu = () => {
   useEffect(() => {
     getMenu();
   }, []);
+
   return (
     <div className="flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl">
       <div className="flex flex-col gap-4 w-full ">
         <h1 className=" text-md font-bold ">Main Menu</h1>
         <hr />
-        <div className=" flex w-full px flex-col items-start justify-start gap-4">
+        <div className=" relative flex w-full px flex-col items-start justify-start gap-4">
           {Menu.map((item : any, index : any) => {
             return (
-              <div className=" " key={index}>
+              <div className=" flex w-full " key={index}>
                 <MainCards
                   name={item.name}
                   description={item.description}
@@ -54,12 +57,13 @@ const MainMenu = () => {
                   category={item.category}
                   image={item.image}
                   status={item.status}
+                  _id={item._id}
                 />
               </div>
             );
           })}
           
-          
+          <Cart />
         </div>
       </div>
     </div>
