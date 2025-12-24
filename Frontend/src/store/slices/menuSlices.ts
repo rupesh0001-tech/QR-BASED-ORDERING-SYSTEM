@@ -5,6 +5,7 @@ interface ICartItem {
   name: string;
   price: number;
   quantity: number;
+  image : string
 }
 
 
@@ -27,7 +28,7 @@ export const menuSlice = createSlice({
     },
 
     AddToCart: (state, action) => {
-      const { _id, name, price } = action.payload;
+      const { _id, name, price, image } = action.payload;
 
       //  find existing item
       const existingItem = state.Cart.find(
@@ -41,6 +42,7 @@ export const menuSlice = createSlice({
           name,
           price,        
           quantity: 1, 
+          image
         });
       }
     },
