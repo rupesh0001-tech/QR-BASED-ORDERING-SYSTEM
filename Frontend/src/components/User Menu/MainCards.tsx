@@ -27,8 +27,8 @@ const MainCards = ({
 }: MenuItemI) => {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (_id: any, name: any, price: number) => {
-    dispatch(AddToCart({ _id, name, price }));
+  const handleAddToCart = (_id: any, name: any, price: number, image : string ) => {
+    dispatch(AddToCart({ _id, name, price, image }));
   };
 
   const cartItem = useSelector((state: any) =>
@@ -89,7 +89,7 @@ const MainCards = ({
             </>
           ) : (
             <button
-              onClick={() => handleAddToCart(_id, name, price)}
+              onClick={() => handleAddToCart(_id, name, price, image)}
               className="bg-blue-950 text-white px-3.5 py-3 rounded-xl text-xs font-semibold"
             >
               Add

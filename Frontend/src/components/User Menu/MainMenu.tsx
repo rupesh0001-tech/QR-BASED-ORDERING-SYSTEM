@@ -5,6 +5,7 @@ import api from "../../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { AddMenu } from "../../store/slices/menuSlices";
 import Cart from "./Cart";
+import CartMenu from "./CartMenu";
 
 const MainMenu = () => {
   interface MenuItemI {
@@ -17,10 +18,11 @@ const MainMenu = () => {
   }
 
   let [menu, setMenu] = useState<MenuItemI[]>([]);
+  const [isClicked, setisClicked] = useState<Boolean>(false);
+  const handleCartClick = () => {
+    isClicked ? setisClicked(false) : setisClicked(true);
+  };
   const dispatch = useDispatch();
-  
-
-
 
   const params = useParams();
 
@@ -28,26 +30,28 @@ const MainMenu = () => {
     await api
       .get(`/api/${params.tableId}/menu`)
       .then((res) => {
-        console.log('hit')
+        console.log("hit");
         setMenu(res.data.Menu);
-        dispatch(AddMenu(res.data.Menu))
+        dispatch(AddMenu(res.data.Menu));
       })
       .catch((err) => console.log(err));
   };
 
-
-  const Menu = useSelector((state : any) => { return state.menuReducers.Menu})
+  const Menu = useSelector((state: any) => {
+    return state.menuReducers.Menu;
+  });
   useEffect(() => {
     getMenu();
   }, []);
 
   return (
-    <div className="flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl">
+    <div className="flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl relative">
+      <CartMenu isClicked={isClicked} />
       <div className="flex flex-col gap-4 w-full ">
         <h1 className=" text-md font-bold ">Main Menu</h1>
         <hr />
-        <div className=" relative flex w-full px flex-col items-start justify-start gap-4">
-          {Menu.map((item : any, index : any) => {
+        <div className="  flex w-full px flex-col items-start justify-start gap-4">
+          {Menu.map((item: any, index: any) => {
             return (
               <div className=" flex w-full " key={index}>
                 <MainCards
@@ -62,8 +66,8 @@ const MainMenu = () => {
               </div>
             );
           })}
-          
-          <Cart />
+
+          <Cart handleCartClick={handleCartClick} />
         </div>
       </div>
     </div>
