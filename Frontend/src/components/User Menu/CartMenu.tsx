@@ -1,4 +1,4 @@
-import { Grip, Minus, Plus, } from "lucide-react";
+import { Grip, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { DecreaseQty, IncreateQty } from "../../store/slices/menuSlices";
 
@@ -16,15 +16,10 @@ const CartMenu = ({ isClicked }: any) => {
   return (
     <div
       className={`fixed bg-white h-[98%] w-full left-0  bottom-0  p-4 rounded-t-4xl overflow-scroll    ${
-        isClicked ? "flex flex-col" : "hidden"
+        isClicked ? "flex flex-col  " : "hidden"
       } `}
     >
-      <div className="w-full">
-        <div className=" p-2 w-full flex justify-center items-center ">
-          <Grip size={20} strokeWidth={2} />
-          <Grip size={20} strokeWidth={2} />
-          <Grip size={20} strokeWidth={2} />
-        </div>
+      <div className="w-full  ">
         <hr />
         <h1 className=" text-xl font-bold mt-5 mb-5"> Your Cart </h1>
       </div>
@@ -36,7 +31,7 @@ const CartMenu = ({ isClicked }: any) => {
           </>
         ) : (
           <>
-            <div className=" w-full flex flex-col gap-4 justify-center items-center  ">
+            <div className=" w-full flex flex-col gap-4  items-center  ">
               {cartItems.map((item: any, idx: any) => {
                 return (
                   <div
@@ -100,6 +95,9 @@ const CartMenu = ({ isClicked }: any) => {
                   </div>
                 );
               })}
+              <button className=" bg-orange-400 text-xl font-medium px-3 py-2 rounded-2xl flex gap-4 text-md  justify-center items-center ">
+                Buy Now <ShoppingBag size={20} strokeWidth={2} />
+              </button>
             </div>
           </>
         )}
