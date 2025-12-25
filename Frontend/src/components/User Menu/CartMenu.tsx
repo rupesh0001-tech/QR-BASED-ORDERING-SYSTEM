@@ -95,8 +95,8 @@ const CartMenu = ({ isClicked }: any) => {
                   </div>
                 );
               })}
-              <button className=" bg-orange-400 text-xl font-medium px-3 py-2 rounded-2xl flex gap-4 text-md  justify-center items-center ">
-                Buy Now <ShoppingBag size={20} strokeWidth={2} />
+              <button className=" bg-orange-400 text-md font-medium px-3 py-2 rounded-2xl flex gap-4 justify-center items-center shadow-md    ">
+                Buy Now <ShoppingBag size={18} strokeWidth={2} />
               </button>
             </div>
           </>
