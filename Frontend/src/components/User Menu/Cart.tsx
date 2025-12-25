@@ -8,9 +8,6 @@ import { useSelector } from "react-redux";
 const Cart = ({handleCartClick } : any ) => {
     const cartItems = useSelector((state : any) => state.menuReducers.Cart );
     
-
-   
-    
     let cartItemsCount = cartItems.reduce((total : any, item : any  ) => total + item.quantity , 0)
     
   return (

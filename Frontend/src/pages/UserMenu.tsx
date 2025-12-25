@@ -2,15 +2,30 @@ import {  SlidersHorizontal } from "lucide-react";
 import SearchBarMenu from "../components/User Menu/SearchBarMenu";
 import CategoryMenu from "../components/User Menu/CategoryMenu";
 import MainMenu from "../components/User Menu/MainMenu";
+import { useEffect, useState } from "react";
 
 
 const UserMenu = () => {
+  let [noScroll, setNoScroll] = useState<Boolean>(false);
+  
+  
 
-  const Scroll  = ( isClicked: boolean) => {
-    console.log(isClicked)
-  }
+  useEffect(() => {
+    if(noScroll){
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = "hidden";
+    }else{
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = "auto";
+    }
+  }, [noScroll])
   return (
-    <div className=" min-h-screen px-4 flex flex-col  gap-4 py-1 bg-[#f4f4f6]">
+    <div className= {` min-h-screen px-4 flex flex-col  gap-4 py-1 bg-[#f4f4f6] ${noScroll? "overflow-hidden" : ""}`}>
       <div className="flex flex-col gap-4 items-center bg-white px-4 py-4 rounded-2xl">
         <SearchBarMenu />
         <div className="flex items-center justify-between w-full">
@@ -23,7 +38,7 @@ const UserMenu = () => {
       </div>
 
       <CategoryMenu />
-      <MainMenu Scroll={Scroll} />
+      <MainMenu setNoScroll={setNoScroll} />
 
     </div>
   );
