@@ -1,4 +1,4 @@
-import { BarChart, Barcode, Grip, Minus, Plus, Tally4 } from "lucide-react";
+import { Grip, Minus, Plus, } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { DecreaseQty, IncreateQty } from "../../store/slices/menuSlices";
 

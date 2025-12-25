@@ -7,7 +7,7 @@ import { AddMenu } from "../../store/slices/menuSlices";
 import Cart from "./Cart";
 import CartMenu from "./CartMenu";
 
-const MainMenu = () => {
+const MainMenu = ({Scroll}) => {
   interface MenuItemI {
     name: string;
     description: string;
@@ -19,8 +19,10 @@ const MainMenu = () => {
 
   let [menu, setMenu] = useState<MenuItemI[]>([]);
   const [isClicked, setisClicked] = useState<Boolean>(false);
+  
   const handleCartClick = () => {
     isClicked ? setisClicked(false) : setisClicked(true);
+    Scroll(isClicked)
   };
   const dispatch = useDispatch();
 
@@ -45,7 +47,7 @@ const MainMenu = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl relative">
+    <div className={`flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl relative `}  >
       <CartMenu isClicked={isClicked} />
       <div className="flex flex-col gap-4 w-full ">
         <h1 className=" text-md font-bold ">Main Menu</h1>

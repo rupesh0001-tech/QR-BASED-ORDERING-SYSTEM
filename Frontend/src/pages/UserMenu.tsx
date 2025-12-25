@@ -5,6 +5,10 @@ import MainMenu from "../components/User Menu/MainMenu";
 
 
 const UserMenu = () => {
+
+  const Scroll  = ( isClicked: boolean) => {
+    console.log(isClicked)
+  }
   return (
     <div className=" min-h-screen px-4 flex flex-col  gap-4 py-1 bg-[#f4f4f6]">
       <div className="flex flex-col gap-4 items-center bg-white px-4 py-4 rounded-2xl">
@@ -19,7 +23,7 @@ const UserMenu = () => {
       </div>
 
       <CategoryMenu />
-      <MainMenu />
+      <MainMenu Scroll={Scroll} />
 
     </div>
   );
