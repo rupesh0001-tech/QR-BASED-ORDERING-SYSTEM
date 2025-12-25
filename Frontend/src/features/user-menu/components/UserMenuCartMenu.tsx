@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { DecreaseQty, IncreateQty } from "../../../store/slices/menuSlices";
+import CartTotal from "./CartTotal";
 
 const CartMenu = ({ isClicked }: any) => {
   const cartItems = useSelector((state: any) => state.menuReducers.Cart);
@@ -95,6 +96,8 @@ const CartMenu = ({ isClicked }: any) => {
                   </div>
                 );
               })}
+              <hr />
+              <CartTotal cartItems={cartItems} />
               <button className=" bg-orange-400 text-md font-medium px-3 py-2 rounded-2xl flex gap-4 justify-center items-center shadow-md    ">
                 Buy Now <ShoppingBag size={18} strokeWidth={2} />
               </button>

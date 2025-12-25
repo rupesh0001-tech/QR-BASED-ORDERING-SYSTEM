@@ -2,16 +2,6 @@ import CategoryItems from "./UserMenuCategoryItems";
 import CategoryData from "../../../data/CategoryData";
 
 
-
-
-// Burgers
-// Pizza
-// Main Course
-// Salad
-// Appetizer
-// Dessert
-// Beverage
-
 const CategoryMenu = () => {
 
   const categoryDataList = CategoryData();
