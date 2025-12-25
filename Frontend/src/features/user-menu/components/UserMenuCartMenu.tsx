@@ -1,9 +1,9 @@
-import { Minus, Plus, ShoppingBag } from "lucide-react";
+import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { DecreaseQty, IncreateQty } from "../../../store/slices/menuSlices";
 import CartTotal from "./CartTotal";
 
-const CartMenu = ({ isClicked }: any) => {
+const CartMenu = ({ isClicked, setisClicked, setNoScroll }: any) => {
   const cartItems = useSelector((state: any) => state.menuReducers.Cart);
   const dispatch = useDispatch();
   const handleIncreaseQuantity = (_id: any) => {
@@ -16,13 +16,17 @@ const CartMenu = ({ isClicked }: any) => {
 
   return (
     <div
-      className={`fixed bg-white h-[98%] w-full left-0  bottom-0  p-4 rounded-t-4xl overflow-scroll    ${
+      className={`fixed bg-white h-[98%] w-full left-0  bottom-0  p-4  overflow-scroll    ${
         isClicked ? "flex flex-col  " : "hidden"
       } `}
     >
       <div className="w-full  ">
         <hr />
-        <h1 className=" text-xl font-bold mt-5 mb-5"> Your Cart </h1>
+        <div className=" flex w-full justify-between px-4 ">
+          <h1 className=" text-xl font-bold mt-5 mb-5"> Your Cart </h1>
+          <button onClick={() => { setisClicked(false), setNoScroll(false) }}> <X /> </button>
+        </div>
+
       </div>
       <div className=" flex flex-col justify-center items-center ">
         {cartItems.length === 0 ? (
@@ -37,7 +41,7 @@ const CartMenu = ({ isClicked }: any) => {
                 return (
                   <div
                     key={item._id}
-                    className="flex px-3 gap-2 min-w-full min-h-[100px] text-start  justify-center items-center rounded-2xl bg-white border border-gray-800 shadow-md "
+                    className="flex px-3 gap-2 min-w-full min-h-[100px] text-start  justify-center items-center rounded-2xl bg-white border border-gray-400 shadow-md "
                   >
                     {/* Image Section - Using the specific cream background */}
                     <div className="w-20 h-20 flex justify-center items-center bg-[#fefbe5] rounded-2xl flex-col">

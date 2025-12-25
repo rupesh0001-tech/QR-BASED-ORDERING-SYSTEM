@@ -42,7 +42,7 @@ const MainMenu = ({ setNoScroll }: any) => {
     <div
       className={`flex flex-col gap-1 items-start p-4 bg-white  py-4 rounded-2xl relative `}
     >
-      <CartMenu isClicked={isClicked} />
+      <CartMenu setisClicked={setisClicked} isClicked={isClicked} setNoScroll={setNoScroll} />
       <div className="flex flex-col gap-4 w-full ">
         <h1 className=" text-md font-bold ">Main Menu</h1>
         <hr />
