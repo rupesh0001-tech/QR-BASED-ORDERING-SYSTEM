@@ -1,7 +1,7 @@
 import {  SlidersHorizontal } from "lucide-react";
-import SearchBarMenu from "../components/User Menu/SearchBarMenu";
-import CategoryMenu from "../components/User Menu/CategoryMenu";
-import MainMenu from "../components/User Menu/MainMenu";
+import SearchBarMenu from "../components/UserMenuSearchBarMenu";
+import CategoryMenu from "../components/UserMenuCategoryMenu";
+import MainMenu from "../components/UserMenuMainMenu";
 import { useEffect, useState } from "react";
 
 

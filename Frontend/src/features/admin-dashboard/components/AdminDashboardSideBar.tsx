@@ -2,15 +2,14 @@ import { useState } from "react";
 import {
   LayoutDashboard,
   MessageCircle,
-  CreditCard,
   Users,
-  Diamond,
   ShoppingBag,
   FileText,
   Send,
   Settings,
-  ChevronDown
 } from "lucide-react";
+import MenuItem from "./AdminDashboardMenuItem";
+import MenuDropdown from "./AdminDashboardMenuDropdown";
 
 const AdminDashboardSideBar = () => {
   const [openMenus, setOpenMenus] = useState({
@@ -20,7 +19,7 @@ const AdminDashboardSideBar = () => {
     email: false,
   });
 
-  const toggleMenu = (key: string) => {
+  const toggleMenu = (key: keyof typeof openMenus) => {
     setOpenMenus((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -52,22 +51,16 @@ const AdminDashboardSideBar = () => {
           label="Discuss"
           isOpen={openMenus.discuss}
           onClick={() => toggleMenu("discuss")}
-          items={["Chat", "Teams", "Announcements"]}
+          items={["Chat", "Forum"]}
         />
-
-        {/* Subscription */}
-        <MenuItem icon={<CreditCard size={18} />} label="Subscription" />
-
-        {/* Contact */}
-        <MenuItem icon={<Users size={18} />} label="Contact" />
 
         {/* CRM */}
         <MenuDropdown
-          icon={<Diamond size={18} />}
+          icon={<Users size={18} />}
           label="CRM"
           isOpen={openMenus.crm}
           onClick={() => toggleMenu("crm")}
-          items={["Leads", "Clients", "Pipeline"]}
+          items={["Customers", "Leads"]}
         />
 
         {/* Sales */}
@@ -106,65 +99,5 @@ const AdminDashboardSideBar = () => {
     </aside>
   );
 };
-
-/* ----- Components ----- */
-
-const MenuItem = ({
-  icon,
-  label,
-}: {
-  icon: JSX.Element;
-  label: string;
-}) => (
-  <div className="px-4 py-2 hover:bg-[#1b2333] cursor-pointer flex items-center gap-3">
-    {icon}
-    <span>{label}</span>
-  </div>
-);
-
-const MenuDropdown = ({
-  icon,
-  label,
-  isOpen,
-  onClick,
-  items,
-}: {
-  icon: JSX.Element;
-  label: string;
-  isOpen: boolean;
-  onClick: () => void;
-  items: string[];
-}) => (
-  <div className="">
-    <div
-      onClick={onClick}
-      className="px-4 py-2 hover:bg-[#1b2333] cursor-pointer flex justify-between items-center"
-    >
-      <div className="flex items-center gap-3">
-        {icon}
-        <span>{label}</span>
-      </div>
-      <ChevronDown
-        className={`transition-transform duration-200 ${
-          isOpen ? "rotate-180" : ""
-        }`}
-        size={16}
-      />
-    </div>
-
-    {isOpen && (
-      <div className="ml-10 mt-1 space-y-1">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="py-1 text-gray-400 hover:text-white cursor-pointer"
-          >
-            {item}
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-);
 
 export default AdminDashboardSideBar;

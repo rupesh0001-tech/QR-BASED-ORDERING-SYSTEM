@@ -3,31 +3,28 @@ import {
   AddToCart,
   DecreaseQty,
   IncreateQty,
-} from "../../store/slices/menuSlices";
+} from "../../../store/slices/menuSlices";
 import { Minus, Plus } from "lucide-react";
+import React from "react";
 
-interface MenuItemI {
+interface MainCardsProps {
+  _id: string;
+  image: string;
   name: string;
   description: string;
   price: number;
-  category: string;
-  image: string;
-  status: string;
-  _id: any;
 }
 
-const MainCards = ({
+const MainCards = React.memo(({
   name,
   description,
   price,
-  category,
-  image,
-  status,
   _id,
-}: MenuItemI) => {
+  image
+}: MainCardsProps) => {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (_id: any, name: any, price: number, image : string ) => {
+  const handleAddToCart = (_id: any, name: any, price: number, image: string) => {
     dispatch(AddToCart({ _id, name, price, image }));
   };
 
@@ -99,6 +96,6 @@ const MainCards = ({
       </div>
     </div>
   );
-};
+});
 
 export default MainCards;

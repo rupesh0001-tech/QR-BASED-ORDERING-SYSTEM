@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api/api";
+import api from "../../../api/api.ts";
 
 
 
@@ -28,14 +28,15 @@ interface IformDataState{
       })
     }
 
-    const handleSubmit = (e : any  ) : void  => {
+    const handleSubmit = async (e : React.FormEvent<HTMLFormElement>  ) : Promise<void>  => {
       e.preventDefault();
-      api.post('/api/admin/login', Data).then(() => {
-          Navigate('/admin/dashboard');
-      }).catch((err) => {
-        console.log(err)
-      });
-
+      try {
+        await api.post('/api/admin/login', Data);
+        Navigate('/admin/dashboard');
+      } catch (err) {
+        console.log(err);
+        // TODO: Add user-friendly error message display
+      }
     }
 
 

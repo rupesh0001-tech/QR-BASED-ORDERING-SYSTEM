@@ -1,6 +1,5 @@
-import React from "react";
-import CategoryItems from "./CategoryItems";
-import CategorySampleData from "../SampleData/CategorySampleData";
+import CategoryItems from "./UserMenuCategoryItems";
+import CategoryData from "../../../data/CategoryData";
 
 
 
@@ -15,7 +14,7 @@ import CategorySampleData from "../SampleData/CategorySampleData";
 
 const CategoryMenu = () => {
 
-  const CategoryData = CategorySampleData();
+  const categoryDataList = CategoryData();
 
   return (
     <div className="flex flex-col gap-1 items-center bg-white px-4 py-4 rounded-2xl">
@@ -25,9 +24,9 @@ const CategoryMenu = () => {
       </div>
       <hr />
       <div className=" flex w-full gap-4 overflow-x-scroll">
-        {CategoryData.map((item) => (
+        {categoryDataList.map((item) => (
           <CategoryItems
-            key={item.id}
+            key={item.title}
             imgurl={item.imgurl}
             title={item.title}
           />

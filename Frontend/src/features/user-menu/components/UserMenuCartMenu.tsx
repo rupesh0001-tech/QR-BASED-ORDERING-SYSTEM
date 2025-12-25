@@ -1,6 +1,6 @@
-import { Grip, Minus, Plus, ShoppingBag } from "lucide-react";
+import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { DecreaseQty, IncreateQty } from "../../store/slices/menuSlices";
+import { DecreaseQty, IncreateQty } from "../../../store/slices/menuSlices";
 
 const CartMenu = ({ isClicked }: any) => {
   const cartItems = useSelector((state: any) => state.menuReducers.Cart);
@@ -32,10 +32,10 @@ const CartMenu = ({ isClicked }: any) => {
         ) : (
           <>
             <div className=" w-full flex flex-col gap-4  items-center  ">
-              {cartItems.map((item: any, idx: any) => {
+              {cartItems.map((item: any) => {
                 return (
                   <div
-                    key={idx}
+                    key={item._id}
                     className="flex px-3 gap-2 min-w-full min-h-[100px] text-start  justify-center items-center rounded-2xl bg-white border border-gray-800 shadow-md "
                   >
                     {/* Image Section - Using the specific cream background */}

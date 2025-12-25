@@ -63,7 +63,7 @@ const UserActivity = () => {
   return (
     <>
       <div className=" flex flex-col gap-2 ">
-        {Users.map((user: any, index: any) => {
+        {Users.map((user: any) => {
           return (
             <div  className=" bg-white py-4 px-8 rounded-xl flex justify-between gap-2  ">
               <div className=" flex justify-between w-full ">

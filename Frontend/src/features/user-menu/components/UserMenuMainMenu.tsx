@@ -1,23 +1,13 @@
-import MainCards from "./MainCards";
+import MainCards from "./UserMenuMainCards";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api/api";
+import api from "../../../api/api.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { AddMenu } from "../../store/slices/menuSlices";
-import Cart from "./Cart";
-import CartMenu from "./CartMenu";
+import { AddMenu } from "../../../store/slices/menuSlices";
+import Cart from "./UserMenuCart";
+import CartMenu from "./UserMenuCartMenu";
 
 const MainMenu = ({ setNoScroll }: any) => {
-  interface MenuItemI {
-    name: string;
-    description: string;
-    price: number;
-    category: string;
-    image: string;
-    status: string;
-  }
-
-  let [menu, setMenu] = useState<MenuItemI[]>([]);
   const [isClicked, setisClicked] = useState<Boolean>(false);
 
   const handleCartClick = () => {
@@ -36,7 +26,6 @@ const MainMenu = ({ setNoScroll }: any) => {
       .get(`/api/${params.tableId}/menu`)
       .then((res) => {
         console.log("hit");
-        setMenu(res.data.Menu);
         dispatch(AddMenu(res.data.Menu));
       })
       .catch((err) => console.log(err));
@@ -58,18 +47,16 @@ const MainMenu = ({ setNoScroll }: any) => {
         <h1 className=" text-md font-bold ">Main Menu</h1>
         <hr />
         <div className="  flex w-full px flex-col items-start justify-start gap-4">
-          {Menu.map((item: any, index: any) => {
+          {Menu.map((item: any) => {
             return (
-              <div className=" flex w-full " key={index}>
+              <div className=" flex w-full " key={item._id}>
                 <MainCards
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  category={item.category}
-                  image={item.image}
-                  status={item.status}
-                  _id={item._id}
-                />
+                    _id={item._id}
+                    name={item.name}
+                    description={item.description}
+                    price={item.price}
+                    image={item.image}
+                  />
               </div>
             );
           })}
