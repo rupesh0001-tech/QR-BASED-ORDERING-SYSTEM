@@ -31,7 +31,7 @@ const CartMenu = ({ isClicked, setisClicked, setNoScroll }: any) => {
       .then((res) => {
         dispatch(CreateOrder(res.data));
         console.log(res.data.order);
-        Navigate(`/order/${res.data.order.order_id}`);
+        Navigate(`/order/${res.data.order.order_id}`, { replace: true });
         
       })
       .catch((err) => console.log(err));
